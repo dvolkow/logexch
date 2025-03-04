@@ -14,7 +14,9 @@ defmodule Logexch.UDPServer do
   end
 
   defp listen(port) when is_number(port) do
-    {:ok, socket} = :gen_udp.open(port, [:binary, active: true, recbuf: @recbufsz])
+    {:ok, socket} =
+      :gen_udp.open(port, [:binary, active: true, recbuf: @recbufsz, ip: {127, 0, 0, 1}])
+
     Logger.debug("UDP-server for accept access log has been started on #{port} port")
 
     loop_receive(socket)
