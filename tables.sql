@@ -28,6 +28,7 @@ CREATE TABLE server.access_log
   `url` String
 )
 ENGINE = ReplacingMergeTree
+PARTITION BY toYYYYMM(timestamp)
 PRIMARY KEY (insert_time, timestamp, request_id)
 ORDER BY (insert_time, timestamp, request_id)
 SETTINGS index_granularity = 8192
