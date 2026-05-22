@@ -13,8 +13,11 @@ fi
 mkdir -p "${INSTALL_DIR}" /etc/logexch /var/log/logexch
 
 tar -xzf "logexch_prod.tar.gz" -C "${INSTALL_DIR}"
+rm "logexch_prod.tar.gz"
 
-chown -R "${APP_USER}:${APP_USER}" "${INSTALL_DIR}"
+sudo chown -R "${APP_USER}:${APP_USER}" "${INSTALL_DIR}"
+sudo chown -R "${APP_USER}:${APP_USER}" /var/log/logexch
+sudo chmod 755 /var/log/logexch
 
 cp "logexch.service" "${SYSTEMD_DIR}/"
 systemctl daemon-reload

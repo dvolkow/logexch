@@ -6,6 +6,7 @@
   "easy_clickhouse": {:git, "https://github.com/dvolkow/easy_clickhouse.git", "bf167803482098c0fe096a6f0bfa60916f4776ed", [branch: "master"]},
   "hpax": {:hex, :hpax, "1.0.3", "ed67ef51ad4df91e75cc6a1494f851850c0bd98ebc0be6e81b026e765ee535aa", [:mix], [], "hexpm", "8eab6e1cfa8d5918c2ce4ba43588e894af35dbd8e91e6e55c817bca5847df34a"},
   "jason": {:hex, :jason, "1.4.5", "2e3a008590b0b8d7388c20293e9dcc9cf3e5d642fd2a114e4cbbb52e595d940a", [:mix], [{:decimal, "~> 1.0 or ~> 2.0 or ~> 3.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm", "b0c823996102bcd0239b3c2444eb00409b72f6a140c1950bc8b457d836b30684"},
+  "logger_file_backend": {:hex, :logger_file_backend, "0.0.14", "774bb661f1c3fed51b624d2859180c01e386eb1273dc22de4f4a155ef749a602", [:mix], [], "hexpm", "071354a18196468f3904ef09413af20971d55164267427f6257b52cfba03f9e6"},
   "mint": {:hex, :mint, "1.8.0", "b964eaf4416f2dee2ba88968d52239fca5621b0402b9c95f55a08eb9d74803e9", [:mix], [{:castore, "~> 0.1.0 or ~> 1.0", [hex: :castore, repo: "hexpm", optional: true]}, {:hpax, "~> 0.1.1 or ~> 0.2.0 or ~> 1.0", [hex: :hpax, repo: "hexpm", optional: false]}], "hexpm", "f3c572c11355eccf00f22275e9b42463bc17bd28db13be1e28f8e0bb4adbc849"},
   "telemetry": {:hex, :telemetry, "1.4.2", "a0cb522801dffb1c49fe6e30561badffc7b6d0e180db1300df759faa22062855", [:rebar3], [], "hexpm", "928f6495066506077862c0d1646609eed891a4326bee3126ba54b60af61febb1"},
 }

@@ -33,6 +33,7 @@ defmodule Logexch.MixProject do
     [
       {:dotenvy, "~> 1.0.1"},
       {:jason, "~> 1.4.5"},
+      {:logger_file_backend, "~> 0.0.14"},
       {:easy_clickhouse, git: "https://github.com/dvolkow/easy_clickhouse.git", branch: "master"}
     ]
   end

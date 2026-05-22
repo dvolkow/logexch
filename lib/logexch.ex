@@ -8,6 +8,7 @@ defmodule Logexch do
     GenServer.start_link(__MODULE__, init_state, name: __MODULE__)
   end
 
+  @impl true
   def init(state) do
     {:ok, _pid} =
       Task.start_link(fn ->
@@ -17,11 +18,17 @@ defmodule Logexch do
     {:ok, state}
   end
 
+  @impl true
+  def terminate(reason, _state) do
+    Logger.info("Stop UDP-server by reason: #{inspect(reason)}")
+    :ok
+  end
+
   defp listen(port) when is_number(port) do
     {:ok, socket} =
       :gen_udp.open(port, [:binary, active: true, recbuf: @recbufsz, ip: {127, 0, 0, 1}])
 
-    Logger.debug("UDP-server for accept access log has been started on #{port} port")
+    Logger.info("UDP-server for accept access log has been started on #{port} port")
 
     loop_receive(socket)
   end
@@ -34,7 +41,7 @@ defmodule Logexch do
         loop_receive(socket)
 
       any ->
-        Logger.debug("unknown data has been accepted: #{inspect(any)}.")
+        Logger.warning("unknown data has been accepted: #{inspect(any)}.")
         loop_receive(socket)
     after
       100 ->
