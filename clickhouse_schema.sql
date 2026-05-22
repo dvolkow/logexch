@@ -1,4 +1,4 @@
-CREATE TABLE server.access_log
+CREATE TABLE IF NOT EXISTS server.access_log
 (
   `insert_time` DateTime DEFAULT now(),
   `args` String,

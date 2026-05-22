@@ -25,3 +25,4 @@ logexch-*.tar
 # envs:
 *.env
 envs/*.env
+*.tar.gz

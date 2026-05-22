@@ -1,6 +1,6 @@
 defmodule Logexch.Parser do
   require Logger
-  @tag Application.compile_env(:logexch, :tag)
+  @tag "#{Application.compile_env(:logexch, :tag)}:"
 
   @spec parse(String.t(), atom(), atom()) :: [EasyClickhouse.RowParser.t()]
   def parse(data, database, table) when is_binary(data) do

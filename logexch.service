@@ -1,0 +1,18 @@
+[Unit]
+Description=Logexch (Nginx log to Clickhouse)
+After=network.target
+
+[Service]
+Type=simple
+User=logexch
+Group=logexch
+WorkingDirectory=/srv/logexch
+ExecStart=/srv/logexch/bin/logexch_release start
+ExecStop=/srv/logexch/bin/logexch_release stop
+Restart=on-failure
+RestartSec=5
+KillMode=process
+SyslogIdentifier=logexch
+
+[Install]
+WantedBy=multi-user.target
