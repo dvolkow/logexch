@@ -31,6 +31,6 @@ http {
     '"upstream_response_time": "$upstream_response_time", '
     '"url": "$uri"}';
 
-  # setup port for our UDP-server Logexch (4355 by default) and separator ("nginx_access" here):
-  access_log syslog:server=127.0.0.1:4355,nohostname,tag=nginx_access,facility=local7 access_log_json;
+  # setup address (127.0.0.1 by default) and port (4355 by default) for our UDP-server Logexch and separator ("nginx_access" here):
+  access_log syslog:server=<%= @address %>:<%= @port %>,nohostname,tag=<%= @separator %>,facility=local7 access_log_json;
 }

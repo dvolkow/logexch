@@ -5,9 +5,18 @@ defmodule Logexch.MixProject do
     [
       app: :logexch,
       version: "0.1.0",
-      elixir: "~> 1.18-dev",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: [
+        logexch_release: [
+          applications: [
+            logexch: :permanent
+          ],
+          overlays: ["envs/"],
+          path: "_build/rel"
+        ]
+      ]
     ]
   end
 
@@ -23,8 +32,9 @@ defmodule Logexch.MixProject do
   defp deps do
     [
       {:dotenvy, "~> 1.0.1"},
-      {:jason, "~> 1.2"},
-      {:ch, "~> 0.3.0"}
+      {:jason, "~> 1.4.5"},
+      {:logger_file_backend, "~> 0.0.14"},
+      {:easy_clickhouse, git: "https://github.com/dvolkow/easy_clickhouse.git", branch: "master"}
     ]
   end
 end

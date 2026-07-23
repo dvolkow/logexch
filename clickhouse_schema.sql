@@ -1,4 +1,4 @@
-CREATE TABLE server.access_log
+CREATE TABLE IF NOT EXISTS server.access_log
 (
   `insert_time` DateTime DEFAULT now(),
   `args` String,
@@ -28,6 +28,7 @@ CREATE TABLE server.access_log
   `url` String
 )
 ENGINE = ReplacingMergeTree
+PARTITION BY toYYYYMM(timestamp)
 PRIMARY KEY (insert_time, timestamp, request_id)
 ORDER BY (insert_time, timestamp, request_id)
 SETTINGS index_granularity = 8192
