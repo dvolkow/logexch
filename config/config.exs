@@ -1,6 +1,8 @@
 import Config
 
 config :logexch,
+  # address of UDP server that collect nginx log entries:
+  address: "127.0.0.1",
   # port for UDP server that collect nginx log entries:
   port: 4355,
   # separator for nginx.conf:

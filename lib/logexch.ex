@@ -10,25 +10,32 @@ defmodule Logexch do
 
   @impl true
   def init(state) do
+    ip =
+      Application.fetch_env!(:logexch, :address)
+      |> parse_ip_string()
+
+    port =
+      Application.fetch_env!(:logexch, :port)
+
     {:ok, _pid} =
-      Task.start_link(fn ->
-        listen(Application.fetch_env!(:logexch, :port))
-      end)
+      Task.start_link(fn -> listen(ip, port) end)
 
     {:ok, state}
   end
 
   @impl true
   def terminate(reason, _state) do
-    Logger.info("Stop UDP-server by reason: #{inspect(reason)}")
+    Logger.info("UDP-server has been stopped by reason: #{inspect(reason)}")
     :ok
   end
 
-  defp listen(port) when is_number(port) do
+  defp listen(address, port) when is_number(port) do
     {:ok, socket} =
-      :gen_udp.open(port, [:binary, active: true, recbuf: @recbufsz, ip: {127, 0, 0, 1}])
+      :gen_udp.open(port, [:binary, active: true, recbuf: @recbufsz, ip: address])
 
-    Logger.info("UDP-server for accept access log has been started on #{port} port")
+    Logger.info(
+      "UDP-server for accept access log has been started on #{inspect(address)}:#{port}"
+    )
 
     loop_receive(socket)
   end
@@ -55,5 +62,10 @@ defmodule Logexch do
     data
     |> Logexch.Parser.parse(:server, :access_log)
     |> EasyClickhouse.enqueue(:server, :access_log)
+  end
+
+  defp parse_ip_string(ip_str) do
+    [a, b, c, d] = ip_str |> String.split(".", trim: true) |> Enum.map(&String.to_integer/1)
+    {a, b, c, d}
   end
 end

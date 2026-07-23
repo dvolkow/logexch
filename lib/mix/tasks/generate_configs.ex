@@ -18,6 +18,7 @@ defmodule Mix.Tasks.GenerateConfigs do
 
   defp build_nginx_conf() do
     [
+      address: Application.fetch_env!(:logexch, :address),
       port: Application.fetch_env!(:logexch, :port),
       separator: Application.fetch_env!(:logexch, :tag)
     ]
