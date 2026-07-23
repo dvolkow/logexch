@@ -2,6 +2,8 @@
 
 **Collector for NGINX logs to Clickhouse written by Elixir**
 
+High-performance and scalable log collector with on-the-fly parsing that stores records in ClickHouse for subsequent analysis.
+
 ## Configure
 
 1. Put your database settings to `config/config.exs`
@@ -23,10 +25,10 @@ For production use `./scripts`:
 1. Clone this repo;
 2. `cd logexch`
 3. `./scripts/build.sh`
-4. `mix generate_configs` for generate systemd unit and nginx/clickhouse compatible schema
+4. \[OPTIONAL\]: `mix generate_configs` for generate systemd unit and nginx/clickhouse compatible schema
 5. `./scripts/install.sh`
 
-After this you can run and stop `logexch` system serivice:
+Now you can run and stop `logexch` system service:
 
 ```
 systemctl start logexch.service

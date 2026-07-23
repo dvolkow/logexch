@@ -10,6 +10,6 @@ config :logexch,
   # dst clickhouse table:
   log_table: :access_log,
   log_database: :server,
-  insert_timeout: 60_000
+  insert_timeout: 30_000
 
 import_config "#{config_env()}.exs"

@@ -8,7 +8,7 @@ defmodule Logexch.Application do
     tables = [
       {:server, :access_log,
        Application.fetch_env!(:logexch, :insert_timeout) || @default_timeout,
-       ["insert_time", "timestamp"]}
+       ["insert_time", "timestamp", "log_line_num"]}
     ]
 
     children = [
